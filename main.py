@@ -15,7 +15,7 @@ _g_bkt_name = 'bkt-cfa'
 def fusion_li_files(tf: str, pf: str, _rm=False):
 
     """
-    Accepts 2 folder paths containing temperature and
+    Accepts 2 paths containing temperature and
     pressure in Lowell Instruments (*.lid) format and generates
     1 output file according to ODN format.
     If parameter _rm is set, deletes a pre-existing output file
@@ -88,7 +88,9 @@ def fusion_li_files(tf: str, pf: str, _rm=False):
 
 # run it
 if __name__ == '__main__':
-    glob_mask = './{}/**/*_Temperature.csv'.format(_g_bkt_name)
+    glob_mask = '{}/{}/**/*_Temperature.csv'.format(os.getcwd(), _g_bkt_name)
+    print('running with glob_mask ->', glob_mask)
+
     _ff = glob.glob(glob_mask, recursive=True)
     for _tf in _ff:
         _pf = _tf.replace('_Temperature', '_Pressure')
